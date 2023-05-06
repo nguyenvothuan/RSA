@@ -12,7 +12,7 @@ def generate_random_string(length):
 
 def test_ascii_conversion():
     # Test the ascii conversion functions 10 times
-    for i in range(10):        
+    for _ in range(10):        
         random_string = generate_random_string(10)
         m = string_to_ascii(random_string)
         assert ascii_to_string(m) == random_string
@@ -28,8 +28,10 @@ def test_encrypt_decrypt():
         assert decrypt(public_key, private_key, c) == m
         print("Test encrypt and decrypt passed against random string: " + random_string)
 
+
+
 # Run the tests
-test_ascii_conversion()    
-test_encrypt_decrypt()
+# test_ascii_conversion()    
+# test_encrypt_decrypt()
 
     

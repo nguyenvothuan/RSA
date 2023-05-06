@@ -1,10 +1,10 @@
 from flask import Flask, jsonify, request
 from algo import *
-
+from flask_cors import CORS
 password = "yasuo"
 
 app = Flask(__name__)
-
+CORS(app)
 public_key, private_key = prepare()
 @app.route('/api/public_key/', methods=['GET'])
 def get_public_key():
@@ -21,8 +21,8 @@ def get_private_key():
 def get_encrypted_message():
     message = request.args.get('message')
     ascii_message = string_to_ascii(message)
-    print(ascii_message)
-    return jsonify(encrypt(public_key, ascii_message))
+    encrypted = encrypt(public_key, ascii_message)
+    return jsonify(encrypted)
 
 @app.route('/api/decrypt/', methods=['GET'])
 def get_decrypted_message():

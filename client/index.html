@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Key Encryption Example</title>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" type="text/css" href="styling.css" />
+  </head>
+  <body>
+    <h1>Key Encryption Example</h1>
+
+    <h2>Public Key</h2>
+    <div id="get-input">
+      <button onclick="getPublicKey()">Get Public Key</button>
+      <input id="publicKeyInput" type="text" readonly />
+    </div>
+
+    <h2>Private Key</h2>
+    <label for="passwordInput">Password:</label>
+    <input id="passwordInput" type="password" />
+    <div id="get-input">
+      <button onclick="getPrivateKey()">Get Private Key</button>
+      <input id="privateKeyInput" type="text" readonly />
+    </div>
+
+    <h2>Encrypted Message</h2>
+    <label for="messageInput">Message:</label>
+    <input id="messageInput" type="text" />
+    <div id="get-input">
+      <button onclick="getEncryptedMessage()">Get Encrypted Message</button>
+      <input id="encryptedMessageInput" type="text" readonly />
+    </div>
+
+    <h2>Decrypted Message</h2>
+    <label for="encryptedInput">Encrypted Message:</label>
+    <input id="encryptedInput" type="text" />
+    <div id="get-input">
+      <button onclick="getDecryptedMessage()">Get Decrypted Message</button>
+      <input id="decryptedMessageInput" type="text" readonly />
+    </div>
+  </body>
+</html>
