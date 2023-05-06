@@ -1,7 +1,7 @@
 import sympy
 
 # config variables
-prime_length = 100
+prime_length = 10
 
 # utility functions
 def string_to_ascii(string: str) -> int:
