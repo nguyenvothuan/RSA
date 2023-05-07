@@ -55,12 +55,27 @@ $$ m \equiv c^d \mod N $$
 
 `def brute_force_decrypt(public_key, encrypted_message)`: Attempt to decrypt the message using only public key. Input: `public_key` - a tuple containing the public key `(n, e)`, `private_key` - a tuple containing the private key `(phi, d)`, `c` - the ciphertext to be decrypted. Output: an integer representing the decrypted message (plaintext)
 
-## Asymptotic Analysis
-
-
-
 ## Technology used
 
+In this project, several technologies were used to implement the RSA algorithm and create a minimal website to serve as a client and server for encryption and decryption of messages.
 
+To work with large prime numbers, I used the sympy library. This library provides efficient algorithms for generating large prime numbers, which are essential for the RSA algorithm. The sympy library is written in Python and is available for installation via pip.
+
+The ascii library was used to convert between plain text and ASCII code. This library provides easy-to-use functions for converting strings to their corresponding ASCII code and vice versa.
+
+To create a minimal website for serving the encryption and decryption of messages, the Flask framework was used to build the server. Flask is a lightweight web framework for Python that provides the necessary tools to create a web application quickly and efficiently. Flask is simple to use and provides a variety of extensions that can be used to extend its functionality.
+
+The client-side of the website was built using plain JavaScript, which allowed for a lightweight and fast client that could communicate with the server to perform encryption and decryption of messages.
+I created a simple UI, but interactive enough for the user to try the encryption scheme with their own message. 
+
+## Project Demo
+Please refer to the source code in this [Github repo](https://github.com/nguyenvothuan/RSA) for how to run the project. I also included a quick demo video there.
 
 ## Reference
+
+- Milanov, Evgeny. "The RSA Algorithm." University of Washington, 3 June 2009,
+[sites.math.washington.edu/~morrow/336_09/papers/Yevgeny.pdf](sites.math.washington.edu/~morrow/336_09/papers/Yevgeny.pdf).
+- "RSA (cryptosystem)." Wikipedia, Wikimedia Foundation, 18 Apr. 2023,
+[en.wikipedia.org/wiki/RSA_(cryptosystem)](en.wikipedia.org/wiki/RSA_(cryptosystem)).
+- Aboud, Sattar. "Efficient Method for Breaking RSA Scheme." Ubiquitous Computing and
+Communication Journal, vol. NTMS, 2009, pp. 1-5.
