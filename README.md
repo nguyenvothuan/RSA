@@ -31,4 +31,4 @@ This readme provides technical instructions on the project's structure, the func
 - Run server: `python main.py`
 - Redirect to `/client/` directory.
 - Open `index.html`. The project is ready for using.
-
+- To get the private key, enter password: `yasuo`
