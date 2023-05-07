@@ -1,3 +1,4 @@
+
 # The RSA Algorithm: Implementation and Technical Analysis
 
 ## Introduction
@@ -69,7 +70,7 @@ The client-side of the website was built using plain JavaScript, which allowed f
 I created a simple UI, but interactive enough for the user to try the encryption scheme with their own message. 
 
 ## Project Demo
-Please refer to the source code in this [Github repo](https://github.com/nguyenvothuan/RSA) for how to run the project. I also included a quick demo video there.
+Please refer to the source code in this [Github repo](https://github.com/nguyenvothuan/RSA) for how to run the project. I also included a quick demo video there. Refer to README.md for how to navigate through the codebase.
 
 ## Reference
 
