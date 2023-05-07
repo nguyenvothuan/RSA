@@ -24,4 +24,11 @@ This readme provides technical instructions on the project's structure, the func
 └── test.py
 ```
 ## How to run the project:
-- 
+- Install and configure python and javascript
+- Initiate a virtual environment for python: `python -m venv venv`
+- Activate the virtual enviroment: `source venv/Scripts/activate` (Mac/Linux) or `venv\Scripts\activate` (Window)
+- Install all packages: `pip install -r requirements.txt`
+- Run server: `python main.py`
+- Redirect to `/client/` directory.
+- Open `index.html`. The project is ready for using.
+
