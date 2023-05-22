@@ -4,7 +4,6 @@
 ## Introduction
 The RSA algorithm, named after Ron Rivest, Adi Shamir, and Leonard Adleman, is a widely used encryption and decryption algorithm in modern communication systems. It is a public-key cryptographic system that uses two different keys, namely the public key and the private key, to perform encryption and decryption operations. The RSA algorithm is considered one of the most secure and reliable cryptographic algorithms available, making it a popular choice for various applications, including secure online transactions, secure communication, and digital signatures.
 
-The RSA algorithm is based on the mathematical complexity of prime factorization, which means that it is difficult to factorize a large number into its prime factors. The algorithm uses a public key to encrypt messages, which can only be decrypted using the corresponding private key. This makes it possible to send sensitive information over public channels without fear of interception or eavesdropping.
 
 In this report, we will explore the implementation and technical analysis of the RSA algorithm. We will discuss the various steps involved in implementing the algorithm, including key generation, encryption, and decryption. Furthermore, we will analyze the security and performance aspects of the algorithm, including its vulnerability to attacks and the computational complexity of its operations. Overall, this report aims to provide a comprehensive understanding of the RSA algorithm and its practical implications.
 
@@ -41,20 +40,67 @@ To decrypt the ciphertext $c$ using the recipient's private key $d$, the recipie
 
 $$ m \equiv c^d \mod N $$
 
-## Function description
-`def string_to_ascii(string: str) -> int:` Convert a string to its corresponding ASCII code. Input: string - the string to be converted. Output: an integer representing the ASCII code of the input string
+## Function description and Pseudocode
+`function string_to_ascii(string: str) -> int:` Convert a string to its corresponding ASCII code. Input: string - the string to be converted. Output: an integer representing the ASCII code of the input string 
 
-`def ascii_to_string(ascii: int) -> str`: Convert an ASCII code to its corresponding string. Input: ascii - an integer representing the ASCII code to be converted. Output: a string representing the input ASCII code
+`function ascii_to_string(ascii: int) -> str`: Convert an ASCII code to its corresponding string. Input: ascii - an integer representing the ASCII code to be converted. Output: a string representing the input ASCII code
 
-`def cook(no_digits: int = prime_length) -> tuple`: Generate two super large prime numbers. Input: no_digits - the desired number of digits in each prime number. Output: a tuple containing the two generated prime numbers
+`function cook(no_digits: int = prime_length) -> tuple`: Generate two super large prime numbers. Input: no_digits - the desired number of digits in each prime number. Output: a tuple containing the two generated prime numbers
 
-`def prepare() -> tuple`: Generate the public and private keys for RSA encryption. Output: a tuple containing the public key (n, e) and the private key (phi, d)
+`function prepare() -> tuple`: Generate the public and private keys for RSA encryption. Output: a tuple containing the public key (n, e) and the private key (phi, d)
+```
+function prepare():
+    p, q = cook()  # Obtain prime numbers p and q
+    n = p * q  # Calculate the modulus n
+    # Calculate Euler's totient function phi(n)
+    phi = (p - 1) * (q - 1)  
+    # Generate a random prime number e within the range [2, phi - 1]
+    e = generate_random_prime(2, phi - 1) 
+    # Calculate the modular inverse of e modulo phi
+    d = modular_inverse(e, phi)  
+    # Return the public key (n, e) and private key (phi, d)
+    return (n, e), (phi, d)  
+```
 
-`def encrypt(public_key: tuple, m: int) -> int`: Encrypt a message using RSA encryption. Input: `public_key` - a tuple containing the public key `(n, e)`, `m` - the message to be encrypted. Output: an integer representing the encrypted message (ciphertext)
+`function encrypt(public_key: tuple, m: int) -> int`: Encrypt a message using RSA encryption. Input: `public_key` - a tuple containing the public key `(n, e)`, `m` - the message to be encrypted. Output: an integer representing the encrypted message (ciphertext)
+```
+function encrypt(public_key: tuple, m: int) -> int:
+    # Extract the modulus n and exponent e from the public key
+    n, e = public_key 
+    # Calculate the ciphertext using modular exponentiation
+    ciphertext = pow(m, e, n)  
+    return ciphertext  
+```
 
-`def decrypt(public_key: tuple, private_key: tuple, c: int) -> int`: Decrypt a ciphertext using RSA decryption. Input: `public_key` - a tuple containing the public key `(n, e)`, `private_key` - a tuple containing the private key `(phi, d)`, `c` - the ciphertext to be decrypted. Output: an integer representing the decrypted message (plaintext)
+`function decrypt(public_key: tuple, private_key: tuple, c: int) -> int`: Decrypt a ciphertext using RSA decryption. Input: `public_key` - a tuple containing the public key `(n, e)`, `private_key` - a tuple containing the private key `(phi, d)`, `c` - the ciphertext to be decrypted. Output: an integer representing the decrypted message (plaintext)
+```
+function decrypt(public_key, private_key: tuple, c: int) -> int:
+    # Extract the private exponent d from the private key
+    _, d = private_key 
+    # Extract the modulus n from the public key 
+    n, _ = public_key  
+    # Calculate the plaintext using modular exponentiation
+    plaintext = pow(c, d, n)  
+    return plaintext  # Return the plaintext
+```
 
-`def brute_force_decrypt(public_key, encrypted_message)`: Attempt to decrypt the message using only public key. Input: `public_key` - a tuple containing the public key `(n, e)`, `private_key` - a tuple containing the private key `(phi, d)`, `c` - the ciphertext to be decrypted. Output: an integer representing the decrypted message (plaintext)
+`function brute_force_decrypt(public_key, encrypted_message)`: Attempt to decrypt the message using only public key. Input: `public_key` - a tuple containing the public key `(n, e)`, `private_key` - a tuple containing the private key `(phi, d)`, `c` - the ciphertext to be decrypted. Output: an integer representing the decrypted message (plaintext)
+
+## Asymptotic Complexity
+According to the pseudocode in the previous section, we will analyze the complexity of each function:
+
+
+`function string_to_ascii(string: str) -> int`: The time complexity of this function depends on the length of the input string. Let's denote the length of the string as n. The conversion requires iterating over each character in the string and performing a constant-time operation for each character. Therefore, the time complexity is O(n), where n is the length of the string.
+
+`function ascii_to_string(ascii: int) -> str`: The time complexity of this function depends on the number of bits required to represent the input ASCII number. Let's denote the number of bits as m. The conversion requires iterating over each byte in the ASCII representation and performing a constant-time operation for each byte. Therefore, the time complexity is O(m), where m is the number of bits required to represent the ASCII number.
+
+`function cook(no_digits: int=prime_length) -> tuple`: The time complexity of generating prime numbers is dependent on the size of the prime numbers. The specific implementation in the code utilizes the randprime function from the sympy library, which uses probabilistic primality testing algorithms. The time complexity of generating prime numbers with probabilistic primality testing is generally considered sublinear in the size of the numbers. Therefore, the time complexity of this function can be approximated as O(log^k(n)), where n is the size of the prime numbers and k is a constant.
+
+`function prepare() -> tuple`: The time complexity of this function depends on the time complexity of the cook function, which generates the prime numbers. Therefore, the time complexity of this function is also approximately O(log^k(n)).
+
+`function encrypt(public_key: tuple, m: int) -> int`: The time complexity of modular exponentiation using the pow function is logarithmic in the exponent. Therefore, the time complexity of this function is approximately O(log(e)), where e is the exponent.
+
+`function decrypt(public_key, private_key: tuple, c: int) -> int`: The complexity of this function is also approximately O(log(d)), where d is the exponent.
 
 ## Technology used
 

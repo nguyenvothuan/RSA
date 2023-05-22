@@ -40,4 +40,10 @@ def decrypt(public_key, private_key: tuple, c: int) -> int:
     n, _ = public_key
     return pow(c, d, n)
 
-
+def brute_force_decrypt(public_key: tuple, c: int)->int:
+    # return plaintext
+    n, e = public_key
+    for i in range(1, n):
+        if pow(i, e, n) == c:
+            return i
+    return -1
