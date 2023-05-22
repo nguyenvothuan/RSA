@@ -12,7 +12,7 @@ This readme provides technical instructions on the project's structure, the func
 - `brute_force_decrypt(public_key, encrypted_message)`: attempt to decrypt the message using only public key.
 
 ## Project Demo: 
-[Loom Video](https://www.loom.com/share/e338555d144a4e61ab0cb492d411e928)
+[Loom Video](https://www.loom.com/share/c28a0d02a16342d6bedac6519cac5526)
 ## Project structure
 ```
 ├── client
